@@ -1,0 +1,275 @@
+:root {
+    --clr-primary: #403c3b;
+    --clr-light: #fff;
+}
+
+.bg {
+    background-image: url("assets/background.png");
+    grid-area: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.to-do-list {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+#new-task-form {
+    display: flex;
+    padding-left: var(--spacer);
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.new-task-button {
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    padding: 0.25em;
+    margin-bottom: 2.2px;
+    color:rgb(54, 112, 199);
+    font-size: 2rem;
+    font-weight: 500;
+    margin-right: 0.25em;
+}
+
+body {
+    /* Grid allows us to divide containers into columns and rows and then define how much space the content should maintain inside */
+    /* CSS grid is a lot like Bootstrap except it has the advantage that nothing needs to be downlaoded from the web */
+    font-family: 'Mulish', sans-serif;
+    background-color: var(--clr-primary);
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--clr-light);
+    display: grid;
+    grid: "header header header header header" auto "...... ...... active ...... ....." auto "...... ...... completed ...... ....." auto/1fr 1fr minmax(250px, 500px) 1fr 1fr;
+}
+
+.to-do-list {
+    --spacer: 2rem;
+    grid-area: active;
+    background-color: var(--clr-light);
+    color: var(--clr-primary);
+}
+
+.to-do-body {
+    padding-left: var(--spacer);
+    padding-right: var(--spacer);
+    padding-bottom: var(--spacer);
+}
+
+.to-do-header {
+    background: rgb(54, 112, 199);
+    opacity: .95;
+    padding: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.completed-task-accordion {
+    margin-left: var(--spacer);
+    margin-right: var(--spacer);
+}
+
+.accordion-btn {
+    position: relative;
+    margin:0;
+    padding: 10px;
+    font-size: 1.2rem;
+}
+
+.accordion-btn i{
+    position: absolute;
+    margin-top: 3px;
+    right: 0;
+    transition: 0.3s;
+}
+
+.completed-task-accordion:hover p {
+    cursor: pointer;
+}
+.accordion-btn:before {
+    content: "";
+    position: absolute;
+}
+
+.accordion-body {
+    height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.accordion-body.is-visible {
+    height: auto;
+}
+
+.title {
+    grid-area: header;
+    text-align: center;
+    font-size: calc(1vw + 2rem);
+    color: var(--clr-light);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-top: 25px;
+}
+
+.header {
+    margin: 5px;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.completed-tasks {
+    grid-area: completed;
+}
+
+[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-checkbox {
+    --size: 0.75em;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    margin-right: var(--size);
+    cursor: pointer;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+
+.task {
+    position: relative;
+    padding: .7em;
+}
+
+.task label {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+.task::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -0.05em;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.1;
+  }
+
+.new-task {
+    order: 2;
+    background: transparent;
+    border:0;
+    outline: none;
+    margin-bottom: 2px;
+    font-size: 1.5rem;
+    padding: 0.15em;
+    border-radius: 20px;
+}
+
+.task:hover {
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+[type="checkbox"]:checked + label {
+    opacity: 0.5;
+}
+
+
+.task:hover .custom-checkbox,
+[type="checkbox"]:focus + label .custom-checkbox {
+    transform: scale(1.1);
+    color: rgb(54, 112, 199);
+}
+
+.task label::after {
+    content: '';
+    position: absolute;
+    left: 1.5em;
+    right: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 100ms ease-in-out;
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+    border-color: rgb(54, 112, 199);
+    background: rgb(54, 112, 199);
+    box-shadow: inset 0 0 0 3px white;
+}
+
+[type="checkbox"]:checked + label::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+#complete-task-form:hover {
+    transition: transform 0.1s ease-in-out;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#trash {
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    background: none;
+    float:right;
+    font-size: 1.2em;
+    opacity: .75;
+}
+
+#trash:hover {
+    transform: scale(1.1);
+}
+
+#orSignup {
+  color: var(--clr-primary);
+}
+
+#input_form {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2C3E50;
+  font-size: 13px;
+}
+
+#submit_button {
+  border: 2px solid white;
+  background-color: Transparent;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 4px;
+}
+
+
+#submit_button:hover {
+  background-color: white;
+  color: black;
+}
